@@ -179,7 +179,7 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
-  m_RootOrder: 1
+  m_RootOrder: 2
   m_LocalEulerAnglesHint: {x: 50, y: -30, z: 0}
 --- !u!1 &534669902
 GameObject:
@@ -322,8 +322,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: dacde020b91e344fdbefcc3089b27bcb, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  startDelay: 3
-  endDelay: 3
+  startDelay: 1
+  endDelay: 1
   playerPrefab: {fileID: 1534011751, guid: 93ee9257b63ad4efab5c2895c0f565f0, type: 3}
   players:
   - playerNumber: 0
@@ -428,7 +428,7 @@ PrefabInstance:
     - target: {fileID: 150037368123047503, guid: e41e2ba18b1964e2bacf3a70ca8d2110,
         type: 3}
       propertyPath: m_RootOrder
-      value: 2
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 150037368123047503, guid: e41e2ba18b1964e2bacf3a70ca8d2110,
         type: 3}

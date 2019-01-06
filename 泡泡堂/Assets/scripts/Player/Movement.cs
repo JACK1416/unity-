@@ -6,19 +6,20 @@ public class Movement : MonoBehaviour
 {
 
     public int playerNumber = 1;
-    public Animation animation;
+    public new Animation animation;
 
     //人物当前行走的方向状态  
     public int state = 0;
     public int moveSpeed = 2;
+    public LayerMask wallMask;
+    public LayerMask bombMask;
 
-
-    private Rigidbody rigidBody;
     private float x;
     private float z;
     private string horizontialName;
     private string verticalName;
 
+    private const int brickSize = 10;
 
     private const int UP = 0;
     private const int RIGHT = 1;
@@ -33,8 +34,6 @@ public class Movement : MonoBehaviour
 
     private void Start()
     {
-        rigidBody = GetComponent<Rigidbody>();
-        rigidBody.freezeRotation = true;
         horizontialName = "Horizontal" + playerNumber;
         verticalName = "Vertical" + playerNumber;
     }
@@ -74,12 +73,17 @@ public class Movement : MonoBehaviour
     private void setState(int newState)
     {
         //根据当前人物方向与上一次备份的方向计算出模型旋转的角度  
-        float rotateValue = (newState - state) * 90;
+        //float rotateValue = (newState - state) * 90;
         Vector3 transformValue = new Vector3();
 
         //播放行走动画  
         animation.Play("run");
 
+        //transform.Rotate(Vector3.up, rotateValue);
+        transform.rotation = Quaternion.Euler(new Vector3(0, newState * 90, 0));
+        //state = newState;
+
+        if (isWall(newState) || isBomb(newState)) return;
         //模型移动的位置数值  
         switch (newState)
         {
@@ -96,11 +100,46 @@ public class Movement : MonoBehaviour
                 transformValue = Vector3.right * Time.deltaTime;
                 break;
         }
-        transform.Rotate(Vector3.up, rotateValue);
+
         //移动人物  
         transform.Translate(transformValue * moveSpeed, Space.World);
-        state = newState;
+
     }
 
+    private bool isWall(int state)
+    {
+        RaycastHit hit;
+        if(state == 0)
+            Physics.Raycast(transform.position, Vector3.forward, out hit, brickSize / 2, wallMask);
+        else if(state == 1)
+            Physics.Raycast(transform.position, Vector3.right, out hit, brickSize / 2, wallMask);
+        else if(state == 2)
+            Physics.Raycast(transform.position, Vector3.back, out hit, brickSize / 2, wallMask);
+        else
+            Physics.Raycast(transform.position, Vector3.left, out hit, brickSize / 2, wallMask);
+
+        if (hit.collider)
+            return true;
+        else
+            return false;
+    }
+
+    private bool isBomb(int state)
+    {
+        RaycastHit hit;
+        if (state == 0)
+            Physics.Raycast(transform.position, Vector3.forward, out hit, brickSize / 2, bombMask);
+        else if (state == 1)
+            Physics.Raycast(transform.position, Vector3.right, out hit, brickSize / 2, bombMask);
+        else if (state == 2)
+            Physics.Raycast(transform.position, Vector3.back, out hit, brickSize / 2, bombMask);
+        else
+            Physics.Raycast(transform.position, Vector3.left, out hit, brickSize / 2, bombMask);
+
+        if (hit.collider)
+            return true;
+        else
+            return false;
+    }
 
 }

@@ -1219,7 +1219,6 @@ GameObject:
   m_Component:
   - component: {fileID: 1534011753}
   - component: {fileID: 1534011752}
-  - component: {fileID: 1534011756}
   - component: {fileID: 1534011757}
   - component: {fileID: 1534011754}
   - component: {fileID: 884789311}
@@ -1265,22 +1264,6 @@ Animation:
   m_PlayAutomatically: 0
   m_AnimatePhysics: 0
   m_CullingType: 0
---- !u!54 &1534011756
-Rigidbody:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1534011751}
-  serializedVersion: 2
-  m_Mass: 1
-  m_Drag: 0.1
-  m_AngularDrag: 0.05
-  m_UseGravity: 1
-  m_IsKinematic: 0
-  m_Interpolate: 2
-  m_Constraints: 84
-  m_CollisionDetection: 0
 --- !u!65 &1534011757
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -1292,7 +1275,7 @@ BoxCollider:
   m_IsTrigger: 0
   m_Enabled: 1
   serializedVersion: 2
-  m_Size: {x: 1, y: 1, z: 1}
+  m_Size: {x: 0.8, y: 0.8, z: 0.8}
   m_Center: {x: 0, y: 0.5, z: 0}
 --- !u!114 &1534011754
 MonoBehaviour:
@@ -1310,6 +1293,12 @@ MonoBehaviour:
   animation: {fileID: 1534011752}
   state: 0
   moveSpeed: 30
+  wallMask:
+    serializedVersion: 2
+    m_Bits: 512
+  bombMask:
+    serializedVersion: 2
+    m_Bits: 1024
 --- !u!114 &884789311
 MonoBehaviour:
   m_ObjectHideFlags: 0

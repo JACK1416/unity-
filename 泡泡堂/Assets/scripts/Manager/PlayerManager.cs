@@ -21,7 +21,7 @@ public class PlayerManager
         movement.playerNumber = playerNumber;
         dropBomb.playerNumber = playerNumber;
 
-        MeshRenderer[] renderers = instance.GetComponentsInChildren<MeshRenderer>();
+        SkinnedMeshRenderer[] renderers = instance.GetComponentsInChildren<SkinnedMeshRenderer>();
 
         for (int i = 0; i < renderers.Length; i++)
         {
@@ -48,7 +48,7 @@ public class PlayerManager
         instance.transform.position = spawnPoint.position;
         instance.transform.rotation = spawnPoint.rotation;
 
-        instance.SetActive(false);
+        //instance.SetActive(false);
         instance.SetActive(true);
     }
 }

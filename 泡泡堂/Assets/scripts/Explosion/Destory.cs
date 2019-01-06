@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class Destory : MonoBehaviour
 {
-    public float liftTime = .5f;
+    public float liftTime = .3f;
 
     private void Start()
     {

@@ -9,6 +9,7 @@ public class Bomb : MonoBehaviour
     public LayerMask mask;
     public int spout = 6; //水柱大小
 
+    private const int brickSize = 10;
     private bool exploded = false;
 
     private void Start()
@@ -34,7 +35,7 @@ public class Bomb : MonoBehaviour
     {
         for (int i = 1; i < spout; i++)
         {
-            int j = 10 * i;
+            int j = brickSize * i;
             RaycastHit hit;
 
             Physics.Raycast(transform.position, direction, out hit, j, mask);

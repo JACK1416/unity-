@@ -20,6 +20,7 @@ public class GameManager : MonoBehaviour
 
         SpawnAllPlayer();
 
+        StartCoroutine(GameLoop());
     }
 
     private void SpawnAllPlayer()
@@ -27,7 +28,7 @@ public class GameManager : MonoBehaviour
         for(int i = 0; i < players.Length; i++)
         {
             players[i].instance =
-                Instantiate(playerPrefab, players[i].spawnPoint.position, players[i].spawnPoint.rotation);
+                Instantiate(playerPrefab, players[i].spawnPoint.position, players[i].spawnPoint.rotation) as GameObject;
             players[i].playerNumber = i + 1;
             players[i].Setup();
         }
@@ -39,6 +40,7 @@ public class GameManager : MonoBehaviour
         yield return StartCoroutine(RoundPlaying());
         yield return StartCoroutine(RoundEnding());
 
+        StartCoroutine(GameLoop());
     }
 
     private IEnumerator RoundStarting()
