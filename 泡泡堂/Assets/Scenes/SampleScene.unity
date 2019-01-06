@@ -322,8 +322,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: dacde020b91e344fdbefcc3089b27bcb, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  startDelay: 2
-  endDelay: 2
+  startDelay: 3
+  endDelay: 3
   playerPrefab: {fileID: 1534011751, guid: 93ee9257b63ad4efab5c2895c0f565f0, type: 3}
   players:
   - playerNumber: 0

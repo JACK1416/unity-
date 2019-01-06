@@ -35,7 +35,7 @@ public class Movement : MonoBehaviour
 
     private void Start()
     {
-        rayDistance = brickLength / 2 + 0.5f;
+        rayDistance = brickLength / 2 + 1f;
         horizontialName = "Horizontal" + playerNumber;
         verticalName = "Vertical" + playerNumber;
     }
@@ -43,7 +43,6 @@ public class Movement : MonoBehaviour
     private void Update()
     {
         //获取控制的方向， 上下左右， 
-        // GetAxisRaw 操作比 GetAxis更流畅
         x = Input.GetAxisRaw(horizontialName);
         z = Input.GetAxisRaw(verticalName);
 
