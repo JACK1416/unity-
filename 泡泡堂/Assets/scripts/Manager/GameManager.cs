@@ -1,6 +1,8 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.SceneManagement;
+using UnityEngine.UI;
 
 public class GameManager : MonoBehaviour
 {
@@ -9,9 +11,14 @@ public class GameManager : MonoBehaviour
     public float endDelay = 3f;
     public GameObject playerPrefab;
     public PlayerManager[] players;
+    public Text messageText;
+    public int roundToWin = 5;
 
     private WaitForSeconds startWaits;
     private WaitForSeconds endWaits;
+    private int roundNumber;
+    private PlayerManager roundWinner;
+    private PlayerManager gameWinner;
 
     private void Start()
     {
@@ -40,7 +47,10 @@ public class GameManager : MonoBehaviour
         yield return StartCoroutine(RoundPlaying());
         yield return StartCoroutine(RoundEnding());
 
-        StartCoroutine(GameLoop());
+        if (gameWinner != null)
+            SceneManager.LoadScene(0);
+        else
+            StartCoroutine(GameLoop());
     }
 
     private IEnumerator RoundStarting()
@@ -48,12 +58,17 @@ public class GameManager : MonoBehaviour
         ResetAllPlayer();
         DisablePlayerControl();
 
+        roundNumber++;
+        messageText.text = "ROUND " + roundNumber;
+
         yield return startWaits;
     }
 
     private IEnumerator RoundPlaying()
     {
         EnablePlayerControl();
+
+        messageText.text = string.Empty;
 
         while (!OnePlayerLeft())
         {
@@ -64,6 +79,17 @@ public class GameManager : MonoBehaviour
     private IEnumerator RoundEnding()
     {
         DisablePlayerControl();
+
+        roundWinner = null;
+        roundWinner = GetRoundWinner();
+
+        if (roundWinner != null)
+            roundWinner.wins++;
+
+        gameWinner = GetGameWinner();
+
+        string message = EndMessage();
+        messageText.text = message;
 
         yield return endWaits;
     }
@@ -103,6 +129,48 @@ public class GameManager : MonoBehaviour
         {
             players[i].EnableControl();
         }
+    }
+
+    private PlayerManager GetRoundWinner()
+    {
+        for (int i = 0; i < players.Length; i++)
+        {
+            if (players[i].instance.activeSelf)
+                return players[i];
+        }
+
+        return null;
+    }
+
+    private PlayerManager GetGameWinner()
+    {
+        for (int i = 0; i < players.Length; i++)
+        {
+            if (players[i].wins == roundToWin)
+                return players[i];
+        }
+
+        return null;
+    }
+
+    private string EndMessage()
+    {
+        string message = "DRAW!";
+
+        if (roundWinner != null)
+            message = roundWinner.playerColorText + " WINS THE ROUND!";
+
+        message += "\n\n\n\n";
+
+        for (int i = 0; i < players.Length; i++)
+        {
+            message += players[i].playerColorText + ": " + players[i].wins + " WINS\n";
+        }
+
+        if (gameWinner != null)
+            message = gameWinner.playerColorText + " WINS THE GAME!";
+
+        return message;
     }
 
 

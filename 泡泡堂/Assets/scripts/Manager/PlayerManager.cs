@@ -7,8 +7,10 @@ public class PlayerManager
 {
     [HideInInspector] public int playerNumber;
     [HideInInspector] public GameObject instance;
+    [HideInInspector] public string playerColorText;
     public Transform spawnPoint;
     public Color playerColor;
+    public int wins;
 
     private Movement movement;
     private DropBomb dropBomb;
@@ -20,6 +22,8 @@ public class PlayerManager
 
         movement.playerNumber = playerNumber;
         dropBomb.playerNumber = playerNumber;
+
+        playerColorText = "<color=#" + ColorUtility.ToHtmlStringRGB(playerColor) + ">PLAYER " + playerNumber + "</color>";
 
         SkinnedMeshRenderer[] renderers = instance.GetComponentsInChildren<SkinnedMeshRenderer>();
 

@@ -19,7 +19,8 @@ public class Movement : MonoBehaviour
     private string horizontialName;
     private string verticalName;
 
-    private const int brickSize = 10;
+    private const float brickLength = 10;
+    private float rayDistance;
 
     private const int UP = 0;
     private const int RIGHT = 1;
@@ -34,6 +35,7 @@ public class Movement : MonoBehaviour
 
     private void Start()
     {
+        rayDistance = brickLength / 2 + 0.5f;
         horizontialName = "Horizontal" + playerNumber;
         verticalName = "Vertical" + playerNumber;
     }
@@ -110,13 +112,13 @@ public class Movement : MonoBehaviour
     {
         RaycastHit hit;
         if(state == 0)
-            Physics.Raycast(transform.position, Vector3.forward, out hit, brickSize / 2, wallMask);
+            Physics.Raycast(transform.position, Vector3.forward, out hit, rayDistance, wallMask);
         else if(state == 1)
-            Physics.Raycast(transform.position, Vector3.right, out hit, brickSize / 2, wallMask);
+            Physics.Raycast(transform.position, Vector3.right, out hit, rayDistance, wallMask);
         else if(state == 2)
-            Physics.Raycast(transform.position, Vector3.back, out hit, brickSize / 2, wallMask);
+            Physics.Raycast(transform.position, Vector3.back, out hit, rayDistance, wallMask);
         else
-            Physics.Raycast(transform.position, Vector3.left, out hit, brickSize / 2, wallMask);
+            Physics.Raycast(transform.position, Vector3.left, out hit, rayDistance, wallMask);
 
         if (hit.collider)
             return true;
@@ -128,13 +130,13 @@ public class Movement : MonoBehaviour
     {
         RaycastHit hit;
         if (state == 0)
-            Physics.Raycast(transform.position, Vector3.forward, out hit, brickSize / 2, bombMask);
+            Physics.Raycast(transform.position, Vector3.forward, out hit, rayDistance, bombMask);
         else if (state == 1)
-            Physics.Raycast(transform.position, Vector3.right, out hit, brickSize / 2, bombMask);
+            Physics.Raycast(transform.position, Vector3.right, out hit, rayDistance, bombMask);
         else if (state == 2)
-            Physics.Raycast(transform.position, Vector3.back, out hit, brickSize / 2, bombMask);
+            Physics.Raycast(transform.position, Vector3.back, out hit, rayDistance, bombMask);
         else
-            Physics.Raycast(transform.position, Vector3.left, out hit, brickSize / 2, bombMask);
+            Physics.Raycast(transform.position, Vector3.left, out hit, rayDistance, bombMask);
 
         if (hit.collider)
             return true;

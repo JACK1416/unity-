@@ -91,8 +91,8 @@ SphereCollider:
   m_IsTrigger: 0
   m_Enabled: 1
   serializedVersion: 2
-  m_Radius: 0.6113014
-  m_Center: {x: 0, y: -0.008093153, z: -0.11939458}
+  m_Radius: 0.65
+  m_Center: {x: 0, y: 0, z: 0}
 --- !u!114 &1237444258
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -110,6 +110,7 @@ MonoBehaviour:
   mask:
     serializedVersion: 2
     m_Bits: 512
+  bombTime: 3
   spout: 6
 --- !u!95 &1237444259
 Animator:

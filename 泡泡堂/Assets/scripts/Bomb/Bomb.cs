@@ -7,6 +7,7 @@ public class Bomb : MonoBehaviour
 
     public GameObject explosionPrefab;
     public LayerMask mask;
+    public float bombTime = 3;
     public int spout = 6; //水柱大小
 
     private const int brickSize = 10;
@@ -14,7 +15,7 @@ public class Bomb : MonoBehaviour
 
     private void Start()
     {
-        Invoke("Explode", 3f);
+        Invoke("Explode", bombTime);
     }
 
     private void Explode()
