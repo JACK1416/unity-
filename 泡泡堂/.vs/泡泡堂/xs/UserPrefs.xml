@@ -1,8 +1,11 @@
 ﻿<Properties StartupConfiguration="{3F7BFF69-60AF-6AE7-9481-ECD43FD8150A}|">
   <MonoDevelop.Ide.Workbench ActiveDocument="Assets/scripts/Player/Movement.cs">
     <Files>
-      <File FileName="Assets/scripts/Player/Movement.cs" Line="145" Column="5" />
-      <File FileName="Assets/scripts/Manager/GameManager.cs" Line="81" Column="32" />
+      <File FileName="Assets/scripts/Player/Movement.cs" Line="49" Column="13" />
+      <File FileName="Assets/scripts/Manager/GameManager.cs" Line="28" Column="17" />
+      <File FileName="Assets/scripts/SocketServer.cs" Line="25" Column="1" />
+      <File FileName="Assets/scripts/SocketClent.cs" Line="37" Column="77" />
+      <File FileName="Assets/scripts/Manager/PlayerManager.cs" Line="9" Column="33" />
     </Files>
   </MonoDevelop.Ide.Workbench>
   <MonoDevelop.Ide.DebuggingService.PinnedWatches />

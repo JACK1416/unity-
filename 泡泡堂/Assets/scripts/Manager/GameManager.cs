@@ -43,6 +43,7 @@ public class GameManager : MonoBehaviour
 
     private IEnumerator GameLoop()
     {
+
         yield return StartCoroutine(RoundStarting());
         yield return StartCoroutine(RoundPlaying());
         yield return StartCoroutine(RoundEnding());
@@ -62,6 +63,7 @@ public class GameManager : MonoBehaviour
         messageText.text = "ROUND " + roundNumber;
 
         yield return startWaits;
+
     }
 
     private IEnumerator RoundPlaying()
@@ -74,6 +76,7 @@ public class GameManager : MonoBehaviour
         {
             yield return null;
         }
+
     }
 
     private IEnumerator RoundEnding()
